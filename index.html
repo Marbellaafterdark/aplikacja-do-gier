@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aplikacja do gier – najlepsze gry mobilne na Android i iOS | GameHub Polska</title>
+  <meta name="description" content="Szukasz aplikacji z grami na telefon? Sprawdź polecane gry mobilne, rankingi, kategorie i bezpieczne pobieranie na Android oraz iOS." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://example.pl/aplikacja/" />
+  <meta property="og:title" content="Aplikacja do gier – gry mobilne w jednym miejscu" />
+  <meta property="og:description" content="Ranking gier mobilnych, aplikacje gamingowe, poradniki instalacji i najlepsze tytuły na telefon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pl_PL" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.08);
+      --panel-strong: rgba(255,255,255,.14);
+      --text: #f8fafc;
+      --muted: #b9c2d7;
+      --accent: #8b5cf6;
+      --accent-2: #22d3ee;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,.45), transparent 34rem),
+        radial-gradient(circle at 80% 20%, rgba(34,211,238,.28), transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(11,16,32,.78);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      font-size: 1.1rem;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 28px rgba(34,211,238,.25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 10px 16px;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+
+    .header-preview-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .header-preview-logo:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.14);
+    }
+
+    .header-preview-logo img {
+      display: block;
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 800;
+      color: #07101d;
+      background: linear-gradient(135deg, var(--accent-2), var(--success));
+      box-shadow: 0 16px 40px rgba(34,211,238,.22);
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 720px;
+      padding: 80px 0 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: var(--muted);
+      font-size: .9rem;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    h1, h2, h3 { line-height: 1.08; letter-spacing: -.04em; margin: 0; }
+    h1 { font-size: clamp(2.6rem, 6vw, 5.7rem); margin-top: 22px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 18px; }
+    h3 { font-size: 1.3rem; }
+
+    .lead {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      margin: 24px 0 30px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .stat, .card, .ranking-card, .faq-item, .phone {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .stat { padding: 18px; border-radius: 22px; }
+    .stat strong { display: block; font-size: 1.55rem; line-height: 1; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+
+    .phone {
+      width: min(390px, 100%);
+      margin-left: auto;
+      border-radius: 42px;
+      padding: 16px;
+      transform: rotate(2deg);
+    }
+
+    .screen {
+      min-height: 620px;
+      border-radius: 32px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.03)),
+        #121a33;
+      padding: 20px;
+      position: relative;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      width: 88px;
+      height: 6px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(255,255,255,.28);
+    }
+
+    .app-title { margin-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+    .pill { color: #06101d; background: var(--warning); border-radius: 999px; padding: 5px 10px; font-size: .78rem; font-weight: 900; }
+    .game-tile {
+      margin-top: 14px;
+      border-radius: 24px;
+      min-height: 128px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,211,238,.55));
+    }
+    .tile-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; }
+    .mini-tile { border-radius: 18px; padding: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); min-height: 96px; }
+    .download-bar { position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; gap: 10px; }
+    .download-bar a { flex: 1; text-align: center; padding: 12px; border-radius: 16px; font-weight: 800; background: rgba(255,255,255,.12); }
+
+    section { padding: 72px 0; }
+    .section-head { max-width: 760px; margin-bottom: 32px; }
+    .section-head p { color: var(--muted); margin: 0; font-size: 1.08rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { border-radius: var(--radius); padding: 24px; min-height: 215px; }
+    .card .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--panel-strong); font-size: 1.5rem; margin-bottom: 24px; }
+    .card p, .ranking-card p, .faq-item p { color: var(--muted); margin-bottom: 0; }
+
+    .ranking {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .ranking-card { border-radius: var(--radius); padding: 22px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
+    .rank-num { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.12); font-weight: 900; }
+    .tag { color: var(--success); font-size: .86rem; font-weight: 800; }
+
+    .split {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .checklist { display: grid; gap: 14px; }
+    .check {
+      display: flex;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .check b { color: var(--success); }
+    .check span { color: var(--muted); }
+
+    .faq { display: grid; gap: 14px; }
+    .faq-item { border-radius: 22px; padding: 22px; }
+
+    .cta {
+      text-align: center;
+      padding: 64px 28px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, rgba(139,92,246,.65), rgba(34,211,238,.25));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+    }
+    .cta p { color: var(--muted); max-width: 680px; margin: 18px auto 26px; }
+
+    footer { color: var(--muted); padding: 34px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: .92rem; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .sources a { text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 880px) {
+      .hero, .split, .ranking { grid-template-columns: 1fr; }
+      .phone { margin: 0 auto; transform: none; }
+      .grid, .stats { grid-template-columns: 1fr; }
+      .nav { flex-wrap: wrap; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Aplikacja do gier – najlepsze gry mobilne",
+    "description": "Strona landingowa dla użytkowników szukających aplikacji gamingowej, gier na telefon i bezpiecznych rekomendacji.",
+    "inLanguage": "pl-PL",
+    "mainEntity": {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Jaka aplikacja do gier na telefon jest najlepsza?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Najlepsza aplikacja zależy od stylu gry: casual, logiczne, multiplayer, battle royale lub RPG. Warto wybierać aplikacje z jasnymi ocenami, bezpiecznym pobieraniem i informacją o reklamach oraz mikropłatnościach." }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy darmowe gry mobilne są bezpieczne?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Darmowe gry mogą być bezpieczne, jeżeli pobierasz je z oficjalnych sklepów, sprawdzasz uprawnienia aplikacji i czytasz informacje o reklamach, zakupach w aplikacji oraz danych użytkownika." }
+        }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="GameHub Polska">
+        <span class="logo">🎮</span>
+        <span>GameHub Polska</span>
+      </a>
+      <nav class="nav-links" aria-label="Główna nawigacja">
+        <a href="#ranking">Ranking</a>
+        <a href="#kategorie">Kategorie</a>
+        <a href="#bezpieczenstwo">Bezpieczeństwo</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-preview-logo" href="https://salongier.org" target="_blank" rel="noopener" aria-label="Salon Gier na Automatach Oficjalna Aplikacja">
+        <img src="https://salongier.org/pics/logo.webp" alt="Salon Gier na Automatach Oficjalna Aplikacja" loading="eager" />
+      </a>
+      <a class="btn secondary" href="#ranking">Zobacz gry</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div>
+        <span class="eyebrow">🔥 Aplikacja gamingowa dla graczy w Polsce</span>
+        <h1>Aplikacja do gier, która pomaga wybrać najlepsze gry na telefon.</h1>
+        <p class="lead">Szukasz hasła “aplikacja” i chcesz po prostu znaleźć dobrą grę? Zebraliśmy popularne kategorie, przykładowe tytuły, oceny społeczności i poradniki bezpiecznego pobierania na Android oraz iOS.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#ranking">Sprawdź ranking</a>
+          <a class="btn secondary" href="#bezpieczenstwo">Jak wybieramy aplikacje</a>
+        </div>
+        <div class="stats" aria-label="Najważniejsze informacje">
+          <div class="stat"><strong>Android + iOS</strong><span>gry mobilne w jednym miejscu</span></div>
+          <div class="stat"><strong>6 kategorii</strong><span>casual, RPG, sport, multiplayer</span></div>
+          <div class="stat"><strong>0 chaosu</strong><span>krótkie opisy i szybki wybór</span></div>
+        </div>
+      </div>
+
+      <aside class="phone" aria-label="Podgląd aplikacji gamingowej">
+        <div class="screen">
+          <div class="app-title">
+            <strong>GameHub</strong>
+            <span class="pill">TOP DNIA</span>
+          </div>
+          <div class="game-tile">
+            <div>
+              <small>Rekomendacja</small>
+              <h3>Gra logiczna na szybkie sesje</h3>
+            </div>
+            <strong>⭐ 4,8 / 5</strong>
+          </div>
+          <div class="tile-row">
+            <div class="mini-tile"><strong>Arcade</strong><br><span>Krótka rozgrywka</span></div>
+            <div class="mini-tile"><strong>Multiplayer</strong><br><span>Graj ze znajomymi</span></div>
+            <div class="mini-tile"><strong>RPG</strong><br><span>Postęp i ekwipunek</span></div>
+            <div class="mini-tile"><strong>Sport</strong><br><span>Rywalizacja online</span></div>
+          </div>
+          <div class="download-bar">
+            <a href="#">Android</a>
+            <a href="#">iOS</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="kategorie" class="wrap">
+      <div class="section-head">
+        <h2>Jaką aplikację z grami wybrać?</h2>
+        <p>Najlepsza strona pod zapytanie “aplikacja” powinna szybko rozpoznać intencję użytkownika i zaproponować konkretne ścieżki: gra na chwilę, gra online, gra bez płacenia lub tytuł dla dzieci.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🧩</div>
+          <h3>Gry logiczne</h3>
+          <p>Dobre dla użytkowników szukających prostych zasad, krótkich sesji i codziennych wyzwań.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚔️</div>
+          <h3>Battle royale i akcja</h3>
+          <p>Dla graczy, którzy chcą szybkiej rywalizacji online, sezonów i systemu rankingowego.</p>
+        </article>
+        <article class="card">
+          <div class="icon">👥</div>
+          <h3>Gry społecznościowe</h3>
+          <p>Światy multiplayer, kreatywność, awatary, czat i rozgrywka ze znajomymi.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🏃</div>
+          <h3>Arcade i endless runner</h3>
+          <p>Najlepsze, gdy użytkownik wpisuje “aplikacja” i chce natychmiastowej rozrywki bez nauki skomplikowanych mechanik.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🧙</div>
+          <h3>RPG i survival</h3>
+          <p>Postacie, rozwój, zadania, crafting i dłuższe sesje dla bardziej zaangażowanych graczy.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚽</div>
+          <h3>Sport i symulatory</h3>
+          <p>Piłka nożna, wyścigi, łowienie ryb, skoki narciarskie i inne gry bliskie lokalnym zainteresowaniom.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ranking" class="wrap">
+      <div class="section-head">
+        <h2>Przykładowy ranking: aplikacje i gry mobilne</h2>
+        <p>Blok rankingowy odpowiada na intencję “chcę coś zainstalować teraz”. W wersji produkcyjnej ranking powinien być aktualizowany automatycznie i rozdzielony na Android, iOS oraz kategorie wiekowe.</p>
+      </div>
+      <div class="ranking">
+        <article class="ranking-card">
+          <span class="rank-num">1</span>
+          <div><h3>Gra logiczna / puzzle</h3><p>Krótka sesja, szybki start, dobra retencja dzienna.</p></div>
+          <span class="tag">Casual</span>
+        </article>
+        <article class="ranking-card">
+          <span class="rank-num">2</span>
+          <div><h3>Sandbox multiplayer</h3><p>Tworzenie, awatary i gra ze znajomymi.</p></div>
+          <span class="tag">Social</span>
+        </article>
+        <article class="ranking-card">
+          <span class="rank-num">3</span>
+          <div><h3>Runner / arcade</h3><p>Prosta mechanika i rozgrywka “jedną ręką”.</p></div>
+          <span class="tag">Arcade</span>
+        </article>
+        <article class="ranking-card">
+          <span class="rank-num">4</span>
+          <div><h3>Survival i strategia</h3><p>Budowanie bazy, zasoby, progres i wydarzenia sezonowe.</p></div>
+          <span class="tag">Midcore</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="bezpieczenstwo" class="wrap split">
+      <div class="section-head">
+        <h2>Bezpieczna aplikacja gamingowa: co pokazać użytkownikowi?</h2>
+        <p>W Polsce użytkownik często szuka krótkiej odpowiedzi, ale strona powinna też budować zaufanie: wyjaśniać reklamy, mikropłatności, uprawnienia i źródła pobierania.</p>
+      </div>
+      <div class="checklist">
+        <div class="check"><b>✓</b><span><strong>Źródło pobrania:</strong> przyciski tylko do oficjalnych sklepów lub własnej zweryfikowanej aplikacji.</span></div>
+        <div class="check"><b>✓</b><span><strong>Mikropłatności:</strong> jasna informacja, czy gra zawiera zakupy w aplikacji.</span></div>
+        <div class="check"><b>✓</b><span><strong>Reklamy:</strong> oznaczenie gier z reklamami przerywającymi rozgrywkę.</span></div>
+        <div class="check"><b>✓</b><span><strong>Wiek gracza:</strong> filtr “dla dzieci”, “dla nastolatków”, “dla dorosłych”.</span></div>
+        <div class="check"><b>✓</b><span><strong>Wymagania:</strong> rozmiar aplikacji, tryb offline, kontrolery, Android/iOS.</span></div>
+      </div>
+    </section>
+
+    <section id="faq" class="wrap">
+      <div class="section-head">
+        <h2>FAQ: aplikacja do gier</h2>
+        <p>FAQ pomaga przejąć długie zapytania z wyników wyszukiwania, np. “jaka aplikacja z grami bez internetu” albo “najlepsza aplikacja do gier na Androida”.</p>
+      </div>
+      <div class="faq">
+        <article class="faq-item">
+          <h3>Jaka aplikacja do gier na telefon jest najlepsza?</h3>
+          <p>Najlepsza aplikacja zależy od tego, czy chcesz grać krótko, rywalizować online, rozwijać postać czy grać bez internetu. Zacznij od kategorii i sprawdź oceny, reklamy oraz zakupy w aplikacji.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Czy warto instalować darmowe gry mobilne?</h3>
+          <p>Tak, ale sprawdzaj uprawnienia, model monetyzacji i opinie. Darmowe gry często zarabiają na reklamach lub zakupach w aplikacji.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Czy ta strona jest rankingiem czy aplikacją?</h3>
+          <p>To przykład strony rankingowej pod frazę “aplikacja”. W projekcie komercyjnym może prowadzić do własnej aplikacji, sklepu, landing page’a lub katalogu recenzji.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="cta">
+        <h2>Znajdź aplikację, która pasuje do Twojego stylu gry.</h2>
+        <p>Filtruj gry po kategorii, trybie online/offline, reklamach, mikropłatnościach i czasie jednej sesji. Bez losowego instalowania dziesiątek aplikacji.</p>
+        <a class="btn" href="#ranking">Przejdź do rankingu</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>© 2026 GameHub Polska. Przykładowa strona SEO dla frazy “aplikacja”.</div>
+      <div class="sources">Źródła danych rynkowych do wersji produkcyjnej: PARP, Bankier/Newseria, Google Play, AppMagic.</div>
+    </div>
+  </footer>
+</body>
+</html>
